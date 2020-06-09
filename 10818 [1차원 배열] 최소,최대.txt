@@ -1,0 +1,25 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let min = 1000001, max = -1000001;
+    for(let i = 0; i < input[0][0]; i++) {
+      if(input[1][i] < min) {
+        min = input[1][i];
+      }
+      if(input[1][i] > max) {
+        max = input[1][i];
+      }
+    }
+    console.log(`${min} ${max}`);
+    process.exit();
+  });
