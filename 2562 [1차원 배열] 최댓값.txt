@@ -1,0 +1,25 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let max = 0;
+    let index;
+    for(let i = 0; i < input.length; i++) {
+      if(parseInt(max) < parseInt(input[i])) {
+        max = input[i];
+        index = i;
+      }
+    }
+    console.log(max);
+    console.log(index + 1);
+    process.exit();
+  });
