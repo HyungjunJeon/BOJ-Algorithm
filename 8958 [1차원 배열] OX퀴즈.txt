@@ -1,0 +1,40 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let score = 0;
+    let answer = [];
+    
+    for(let i = 1; i <= input[0]; i++) {
+      for(let j = 0; j < input[i].length; j++) {
+        if(input[i][j] === 'X') {
+          score;
+        } else {
+          for(let k = j; k >= 0; k--) {
+            if(input[i][k] === 'O') {
+              score++;
+            } else {
+              break;
+            }
+          }
+        }
+      }
+      answer.push(score);
+      score = 0;
+    }
+    
+    for(let i = 0; i < answer.length; i++) {
+      console.log(answer[i]);
+    }
+
+    process.exit();
+  });
