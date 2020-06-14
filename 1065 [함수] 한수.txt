@@ -1,0 +1,56 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let sum = 0;
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let count = 0;
+    for(let i = 1; i <= input[0]; i++) {
+      if(isHansu(i) === true) {
+        count++;
+      }
+    }
+    console.log(count);
+    process.exit();
+  });
+
+  function isHansu(number) {
+    let index;
+    let gap;
+    let gaps = [];
+    let temp = [];
+
+    if(number < 100) {
+      return true;
+    } else {
+      while(number >= 10) {
+        temp.push(number % 10);
+        number = Math.floor(number / 10);
+      }
+      temp.push(number);
+
+      for(let i = 0; i < temp.length - 1; i++) {
+        gaps.push(temp[i + 1] - temp[i]);
+      }
+
+      gap = gaps[0];
+      for(index = 0; index < gaps.length; index++) {
+        if(gap !== gaps[index]) {
+          break;
+        }
+      }
+      if(index === gaps.length) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
