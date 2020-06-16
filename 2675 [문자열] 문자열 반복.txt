@@ -1,0 +1,30 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' '));
+  })
+  .on('close', () => {
+    let answer = [];
+    let temp = '';
+    for(let i =1; i <= input[0]; i++) {
+      for(let j = 0; j < input[i][1].length; j++) {
+        for(let k = 0; k < input[i][0]; k++) {
+          temp += input[i][1][j];
+        }
+      }
+      answer.push(temp);
+      temp = '';
+    }
+    
+    for(let i = 0; i < answer.length; i++) {
+      console.log(answer[i]);
+    }
+    process.exit();
+  });
