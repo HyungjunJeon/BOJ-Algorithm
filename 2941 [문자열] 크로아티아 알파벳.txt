@@ -1,0 +1,66 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    console.log(countCroatiaAlphabet(input[0]));
+    process.exit();
+  });
+
+  function countCroatiaAlphabet(string) {
+    let count = 0;
+    for(let i = 0; i < string.length; i++) {
+      switch(string[i]) {
+        case 'c':
+        if(string[i + 1] === '=' || string[i + 1] === '-') {
+          count++;
+          i += 1;
+        } else {
+          count++;
+        }
+        break;
+        case 'd':
+        if(string[i + 1] === 'z' && string[i + 2] === '=') {
+          count++;
+          i += 2;
+        } else if(string[i+ 1] === '-') {
+          count++;
+          i += 1;
+        } else {
+          count++;
+        }
+        break;
+        case 'l':
+        case 'n':
+        if(string[i + 1] === 'j') {
+          count++;
+          i += 1;
+        } else {
+          count++;
+        }
+        break;
+        case 's':
+        case 'z':
+        if(string[i + 1] === '=') {
+          count++;
+          i += 1;
+        } else {
+          count++;
+        }
+        break;
+        default:
+        count++;
+        break;
+      }
+    }
+
+    return count;
+  }
