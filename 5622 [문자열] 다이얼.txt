@@ -1,0 +1,50 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    console.log(calculateTime(changeCharToNum(input[0])));
+    process.exit();
+  });
+
+  function changeCharToNum(string) {
+    let result = [];
+    for(let i = 0; i < string.length; i++) {
+      if(string[i] >= 'A' && string[i] <= 'C') {
+        result.push(2);
+      } else if(string[i] >= 'D' && string[i] <= 'F') {
+        result.push(3);
+      } else if(string[i] >= 'G' && string[i] <= 'I') {
+        result.push(4);
+      } else if(string[i] >= 'J' && string[i] <= 'L') {
+        result.push(5);
+      } else if(string[i] >= 'M' && string[i] <= 'O') {
+        result.push(6);
+      } else if(string[i] >= 'P' && string[i] <= 'S') {
+        result.push(7);
+      } else if(string[i] >= 'T' && string[i] <= 'V') {
+        result.push(8);
+      } else {
+        result.push(9);
+      }
+    }
+
+    return result;
+  }
+
+  function calculateTime(array) {
+    let sum = 0;
+    for(let i = 0; i < array.length; i++) {
+      sum += (array[i] + 1);
+    }
+
+    return sum;
+  }
