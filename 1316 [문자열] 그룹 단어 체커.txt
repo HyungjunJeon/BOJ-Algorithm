@@ -1,0 +1,51 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let count = 0;
+    for(let i = 1; i <= input[0]; i++) {
+      if(isGroupWord(input[i]) !== false) {
+        count++;
+      }
+    }
+    console.log(count);
+    process.exit();
+  });
+
+function isGroupWord(string) {
+  let temp = new Array(26);
+  for(let i = 0; i < 26; i++) {
+    temp[i] = new Array();
+  }
+
+  for(let i = 0; i < string.length; i++) {
+    temp[(string[i].charCodeAt() - 97)].push(i);
+  }
+  
+  for(let i = 0; i < temp.length; i++) {
+    if(isArithmeticalProgression(temp[i]) === false) {
+      return false;
+    }
+  }
+}
+
+function isArithmeticalProgression(array) {
+  if(array.length < 2) {
+    return true;
+  } else {
+    for(let i = 0; i < array.length - 1; i++) {
+      if((array[i + 1] - array[i]) !== 1) {
+        return false;
+      }
+    }
+  }
+}
