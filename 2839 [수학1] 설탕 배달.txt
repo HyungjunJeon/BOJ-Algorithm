@@ -1,0 +1,35 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let min = 2000;
+    let temp = [];
+    for(let i = 0; i <= input[0] / 3; i++) {
+      for(let j = 0; j <= input[0] / 5; j++) {
+        if(3 * i + 5 * j === Number(input[0])) {
+          temp.push((i + j));
+        }
+      }
+    }
+    
+    if(temp.length === 0) {
+      console.log(-1);
+    } else {
+      for(let i = 0; i < temp.length; i++) {
+        if(min >= temp[i]) {
+          min = temp[i];
+        }
+      }
+      console.log(min);
+    }
+    process.exit();
+  });
