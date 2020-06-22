@@ -1,0 +1,50 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+   input.push(line);
+}).on('close', () =>  {
+  let answer = '';
+  let denominator;
+  let numerator;
+  if(getLineNumber(Number(input[0])) % 2 !== 0) {
+    denominator = Number(input[0]) - sumArithmeticalProgression(getLineNumber(Number(input[0])) - 1);
+    numerator = getLineNumber(Number(input[0])) + 1 - denominator;
+    answer += numerator;
+    answer += '/';
+    answer+= denominator;
+  } else {
+    numerator = Number(input[0]) - sumArithmeticalProgression(getLineNumber(Number(input[0])) - 1);
+    denominator = getLineNumber(Number(input[0])) + 1 - numerator;
+    answer += numerator;
+    answer += '/';
+    answer+= denominator;
+  }
+  console.log(answer);
+  process.exit();
+});
+
+function sumArithmeticalProgression(n) {
+  return n * (n + 1) / 2;
+}
+
+function getLineNumber(number) {
+  let count = 2;
+  if(number === 1) {
+    return 1;
+  } else {
+    while(true) {
+      if(number > sumArithmeticalProgression(count - 1) && number <= sumArithmeticalProgression(count)) {
+        return count;
+        break;
+      }
+      count++;
+    }
+  }
+}
