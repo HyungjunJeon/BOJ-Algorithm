@@ -1,0 +1,41 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+let room = new Array(15);
+for(let i = 0; i < 15; i++) {
+    room[i] = new Array(14);
+}
+
+for(let i = 0; i < 14; i ++) {
+    room[0][i] = i + 1;
+  }
+   
+for(let i = 1; i < 15; i++) {
+  for(let j = 0; j < 14; j++) {
+    room[i][j] = getRoomPopulation(i, j);
+  }
+}
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    for(let i = 1; i <= input[0]; i++) {
+      console.log(room[input[2 * i - 1]][input[[2 * i]] - 1]);
+    }
+    process.exit();
+  });
+
+function getRoomPopulation(floor, roomNum) {
+  let sum = 0;
+  for(let i = 0; i <= roomNum; i++) {
+    sum += room[floor - 1][i];
+  }
+
+  return sum;
+}
