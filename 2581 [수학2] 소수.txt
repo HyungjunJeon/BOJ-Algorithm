@@ -1,0 +1,50 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let sum = 0;
+    let min = 10000;
+    let temp = [];
+    for(let i = Number(input[0]); i <= Number(input[1]); i++) {
+      if(isPrimeNumber(i)) {
+        temp.push(i);
+      }
+    }
+    
+    if(temp.length === 0) {
+      console.log(-1);
+    } else {
+      for(let i= 0; i < temp.length; i++) {
+        sum += temp[i];
+        if(temp[i] < min) {
+          min = temp[i];
+        }
+      }
+      console.log(sum);
+      console.log(min);
+    }
+    process.exit();
+  });
+
+  function isPrimeNumber(num) {
+    let count = 0;
+    for(let i = 2; i <= num; i++) {
+      if(num % i === 0) {
+        count++;
+      }
+    }
+    if(count === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
