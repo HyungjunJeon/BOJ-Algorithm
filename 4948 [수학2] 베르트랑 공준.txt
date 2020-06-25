@@ -1,0 +1,49 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+  input.push(parseInt(line));
+})
+  .on('close', () => {
+    let index = 0;
+    let count = 0;
+    const numbers = [];
+    for(let i = 1; i <= 246912; i++) {
+      numbers.push(i);
+    }
+    siftPrimeNumber(numbers);
+
+    while (input[index] !== 0) {
+      for(let i = input[index]; i <= input[index] * 2 - 1; i++) {
+        if(numbers[i] !== 0) {
+          count++;
+        }
+      }
+      console.log(count);
+      count = 0;
+      index++;
+    }
+    process.exit();  
+  });
+
+function siftPrimeNumber(array) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === 1) {
+      array[i] = 0;
+    } else {
+      if (array[i] !== 0) {
+        for (let j = 2; j <= 500; j++) {
+          if (array[i] !== j && array[i] % j === 0) {
+            array[i] = 0;
+          }
+        }
+      }
+    }
+  }
+}
