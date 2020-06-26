@@ -1,0 +1,47 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+  input.push(line.split(' ').map((el) => parseInt(el)));
+})
+  .on('close', () => {
+    let answer = '';
+    let x = [];
+    let y = [];
+    for (let i = 0; i < input.length; i++) {
+      x.push(input[i][0]);
+      y.push(input[i][1]);
+    }
+
+    const countx = x.reduce((t, a) => {
+      t[a] = (t[a] || 0) + 1;
+      return t
+    }, {});
+
+    for (let i = 0; i < Object.entries(countx).length; i++) {
+      if (Object.entries(countx)[i][1] === 1) {
+        answer += Object.entries(countx)[i][0];
+      }
+    }
+
+    answer += ' ';
+
+    const county = y.reduce((t, a) => {
+      t[a] = (t[a] || 0) + 1;
+      return t
+    }, {});
+
+    for (let i = 0; i < Object.entries(county).length; i++) {
+      if (Object.entries(county)[i][1] === 1) {
+        answer += Object.entries(county)[i][0];
+      }
+    }
+    console.log(answer);
+    process.exit();
+  });
