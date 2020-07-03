@@ -1,0 +1,22 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let sum = 0;
+let input = [];
+
+rl.on('line', line => {
+    input.push(parseInt(line));
+  })
+  .on('close', () => {
+    let temp = input.slice(1,input[0] + 1);
+    temp.sort((a, b) => {
+      return a - b;
+    });
+    
+    console.log(temp.join('\n'));
+    process.exit();
+  });
