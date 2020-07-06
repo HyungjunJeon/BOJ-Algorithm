@@ -1,0 +1,50 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let index = 0;
+    while(input[index][0] !== 0 && input[index][1] !== 0){
+      if(isFactor(input[index][0], input[index][1]) === true) {
+        console.log('factor');
+      } else if(isMultiple(input[index][0], input[index][1]) === true) {
+        console.log('multiple');
+      } else {
+        console.log('neither');
+      }
+      index++;
+    }
+    process.exit();
+  });
+
+function isFactor(number1, number2) {
+  if(number1 < number2) {
+    if(number2 % number1 === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
+
+function isMultiple(number1, number2) {
+  if(number1 > number2) {
+    if(number1 % number2 === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
