@@ -1,0 +1,45 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input = line.split(' ').map((el) => parseInt(el));
+  })
+  .on('close', () => {
+    console.log(getGCD(input[0], input[1]));
+    console.log(getLCM(input[0], input[1]));
+    process.exit();
+  });
+
+function getGCD(number1, number2) {
+  let a, b, r;
+  if(number1 === number2) {
+    return number1;
+  } else {
+    if(number1 < number2) {
+      a = number1;
+      b = number2;
+    } else {
+      a = number2;
+      b = number1;
+    }
+
+    while(a % b !== 0) {
+      r = a % b;
+      a = b;
+      b = r;
+    }
+
+    return r;
+  }
+}
+
+function getLCM(number1, number2) {
+  let gcd = getGCD(number1, number2);
+  return gcd * number1 / gcd * number2 / gcd;
+}
