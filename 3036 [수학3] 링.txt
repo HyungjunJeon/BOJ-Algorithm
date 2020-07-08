@@ -1,0 +1,43 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+  input.push(line.split(' ').map((el) => parseInt(el)));
+})
+  .on('close', () => {
+    let gcd;
+    for(let i = 1; i < input[0]; i++) {
+      gcd = getGCD(input[1][0], input[1][i]);
+      console.log(`${input[1][0] / gcd}/${input[1][i] / gcd}`);
+    }
+    process.exit();
+  });
+
+function getGCD(number1, number2) {
+  let a, b, r;
+  if (number1 === number2) {
+    return number1;
+  } else {
+    if (number1 < number2) {
+      a = number1;
+      b = number2;
+    } else {
+      a = number2;
+      b = number1;
+    }
+
+    while (a % b !== 0) {
+      r = a % b;
+      a = b;
+      b = r;
+    }
+
+    return r;
+  }
+}
