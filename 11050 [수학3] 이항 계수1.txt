@@ -1,0 +1,24 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+     input = line.split(' ').map((el) => parseInt(el));
+  })
+  .on('close', () => {
+    console.log(calculateFactorial(input[0]) / (calculateFactorial(input[1]) * calculateFactorial((input[0] - input[1]))));
+    process.exit();
+  });
+
+  function calculateFactorial(number) {
+    if(number === 0) {
+      return 1;
+    } else {
+      return number * calculateFactorial(number - 1);
+    }
+  }
