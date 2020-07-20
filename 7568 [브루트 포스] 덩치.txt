@@ -1,0 +1,28 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let count = 1;
+    let rank = [];
+    for(let i = 1; i <= input[0]; i++) {
+      for(let j = 1; j <= input[0]; j++) {
+        input[i][0] < input[j][0] && input[i][1] < input[j][1] ? count++ : count;
+      }
+      rank.push(count);
+      count = 1;
+    }
+    
+    for(let i = 0; i < rank.length; i++) {
+      console.log(rank[i]);
+    }
+    process.exit();
+  });
