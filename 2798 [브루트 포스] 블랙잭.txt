@@ -1,0 +1,29 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let max = 0;
+    let sum = [];
+    for(let i = 0; i < input[0][0] - 2; i++) {
+      for(let j = i +1; j < input[0][0]; j++) {
+        for(let k = j + 1; k < input[0][0]; k++) {
+          sum.push(input[1][i] + input[1][j] + input[1][k]);
+        }
+      }
+    }
+    
+    for(let i = 0; i < sum.length; i++) {
+      sum[i] <= input[0][1] && max <= sum[i] ? max = sum[i] : max;
+    }
+    console.log(max);
+    process.exit();
+  });
