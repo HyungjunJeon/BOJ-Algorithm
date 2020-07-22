@@ -1,0 +1,39 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let sum = 0;
+let input = [];
+
+rl.on('line', line => {
+    input.push(parseInt(line));
+  })
+  .on('close', () => {
+    let decompositionSum = [];
+    let constructor = [];
+    for(let i = 1; i <= input[0]; i++) {
+      decompositionSum.push(CalculateDecompositionSum(i));
+    }
+
+    for(let i = 0; i < decompositionSum.length; i++) {
+      if(decompositionSum[i] === input[0]) {
+        constructor.push(i + 1);
+      }
+    }
+    
+    constructor.length === 0 ? console.log(0) : console.log(constructor[0]);
+    process.exit();
+  });
+
+function CalculateDecompositionSum(number) {
+  let result = parseInt(number);
+  while(number >= 10) {
+    result += number % 10;
+    number = Math.floor(number / 10);
+  }
+  result += number;
+  return result;
+}
