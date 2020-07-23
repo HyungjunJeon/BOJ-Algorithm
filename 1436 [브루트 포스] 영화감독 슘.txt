@@ -1,0 +1,27 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let sum = 0;
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let number = 666;
+    let count = 1;
+    let numberOfEnd = [];
+    while(count <= input[0]) {
+      if(number.toString().indexOf('666') !== -1) {
+        numberOfEnd.push(number);
+        count++;
+      }
+      number++;
+    }
+    console.log(numberOfEnd[numberOfEnd.length - 1]);
+    process.exit();
+  });
