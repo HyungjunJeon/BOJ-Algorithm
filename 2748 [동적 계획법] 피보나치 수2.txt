@@ -1,0 +1,28 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(parseInt(line));
+  })
+  .on('close', () => {
+    console.log(calculateFibonacciNumber(input[0]).toString());
+    process.exit();
+  });
+
+  function calculateFibonacciNumber(number) {
+    let memo = new Array(number);
+    for(let i = 0; i <= number; i++) {
+      if(i === 0 || i === 1) {
+        memo[i] = i;
+      } else {
+        memo[i] = BigInt(memo[i - 1]) + BigInt(memo[i - 2]);
+      }
+    }
+    return memo[number];
+  }
