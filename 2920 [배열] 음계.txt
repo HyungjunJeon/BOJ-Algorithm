@@ -1,0 +1,29 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input = line.split(' ').map((el) => parseInt(el));
+  })
+  .on('close', () => {
+    console.log(checkScale(input));
+    process.exit();
+  });
+
+  function checkScale(array) {
+    let answer = '';
+    for(let i = 0; i <= array.length - 2; i++) {
+      if(array[i + 1] - array[i] !== 1 && array[i + 1] - array[i] !== -1) {
+        answer = 'mixed';
+        return answer;
+      }
+    }
+
+    array[0] === 1 ? answer = 'ascending' : answer = 'descending';
+    return answer;
+  }
