@@ -1,0 +1,26 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', function (line) {
+    input = line.split(' ').map((el) => parseInt(el));
+  })
+  .on('close', function () {
+    console.log(findCheckNumber(input));
+    process.exit();
+  });
+
+function findCheckNumber(array) {
+  let answer;
+  let sum = 0;
+  for(let i = 0; i < array.length; i++) {
+    sum += array[i] * array[i];
+  }
+  answer = sum % 10;
+  return answer;
+}
