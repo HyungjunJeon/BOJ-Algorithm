@@ -1,0 +1,39 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+     input = line.split(' ').map((el) => parseInt(el));
+  })
+  .on('close', () => {
+    let answer = '<';
+    let index = -1;
+    let people = [];
+    for(let i = 1; i <= input[0]; i++) {
+      people.push(i);
+    }
+    
+    while(people.length !== 0) {
+      if(index + input[1] <= people.length - 1) {
+        index = index + input[1];
+        answer += people[index];
+        answer += ', ';
+        people.splice(index, 1);
+      } else {
+        index = (index + input[1]) % people.length;
+        answer += people[index];
+        answer += ', ';
+        people.splice(index, 1);
+      }
+      index--;
+    }
+    answer = answer.slice(0, -2);
+    answer += '>';
+    console.log(answer);
+    process.exit();
+  });
