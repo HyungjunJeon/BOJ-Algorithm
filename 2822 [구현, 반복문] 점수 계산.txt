@@ -1,0 +1,42 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(parseInt(line));
+  })
+  .on('close', () => {
+    let sum = 0;
+    let correctNumbers = [];
+    let printCorrectNumbers = '';
+    let scoreAndNumbers = new Array(input.length);
+    for(let i = 0; i < input.length; i++) {
+      scoreAndNumbers[i] = [input[i], i + 1];
+    }
+    
+    scoreAndNumbers.sort((a, b) => {
+      return b[0] - a[0];
+    })
+    
+    for(let i = 0; i < 5; i++) {
+      sum += scoreAndNumbers[i][0];
+      correctNumbers.push(scoreAndNumbers[i][1]);
+    }
+    correctNumbers.sort((a, b) => {
+      return a - b;
+    })
+
+    for(let i = 0; i < correctNumbers.length; i++) {
+      printCorrectNumbers += correctNumbers[i];
+      printCorrectNumbers += ' ';
+    }
+
+    console.log(sum);
+    console.log(printCorrectNumbers);
+    process.exit();
+  });
