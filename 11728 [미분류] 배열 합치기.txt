@@ -1,0 +1,32 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let answer = '';
+    let temp = [];
+    for(let i = 1; i <= 2; i++) {
+      for(let j = 0; j < input[0][i - 1]; j++) {
+        temp.push(input[i][j]);
+      }
+    }
+    
+    temp.sort((a, b) => {
+      return a - b;
+    })
+
+    for(let i = 0; i < temp.length; i++) {
+      answer += temp[i];
+      answer += ' ';
+    }
+    console.log(answer);
+    process.exit();
+  });
