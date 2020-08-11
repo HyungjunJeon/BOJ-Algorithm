@@ -1,0 +1,32 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let answer = '';
+    let hour;
+    let minute;
+    let temp = input[0][0] * 60 + input[0][1] + input[1][0];
+
+    hour = Math.floor(temp / 60);
+    minute = temp % 60;
+
+    if(hour >= 24) {
+      hour -= 24;
+      answer += hour;
+    } else {
+      answer += hour;
+    }
+    answer += ' ';
+    answer += minute;
+    console.log(answer);
+    process.exit();
+  });
