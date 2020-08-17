@@ -1,0 +1,21 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input = line.split(' ').map((el) => parseInt(el));
+  })
+  .on('close', () => {
+    let answer = '';
+    let x = Math.sqrt(Math.pow(input[0], 2) / (Math.pow(input[1], 2) + Math.pow(input[2], 2)));
+    answer += Math.floor(input[1] * x);
+    answer += ' ';
+    answer += Math.floor(input[2] * x);
+    console.log(answer);
+    process.exit();
+  });
