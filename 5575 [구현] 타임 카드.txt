@@ -1,0 +1,45 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    for(let i = 0; i < input.length; i++) {
+      console.log(calculateWorkingTime(input[i]));
+    }
+    process.exit();
+  });
+
+function calculateWorkingTime(array) {
+  let answer = '';
+  let minute;
+  let second;
+  if(array[5] < array[2]) {
+    array[4]--;
+    second = (array[5] + 60) - array[2];
+  } else {
+    second= array[5] - array[2];
+  }
+
+  if(array[4] < array[1]) {
+    array[3]--;
+    minute = (array[4] + 60) - array[1];
+  } else {
+    minute = array[4] - array[1];
+  }
+
+  answer += array[3] - array[0];
+  answer += ' ';
+  answer += minute;
+  answer += ' ';
+  answer += second;
+
+  return answer;
+}
