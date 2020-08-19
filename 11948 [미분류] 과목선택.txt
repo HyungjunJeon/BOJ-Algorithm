@@ -1,0 +1,32 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+     input.push(parseInt(line));
+  })
+  .on('close', () => {
+    let sum = 0;
+    let selectOne = input.splice(0, 4);
+    let selectTwo = input;
+    
+    selectOne.sort((a, b) => {
+      return b - a;
+    })
+    selectTwo.sort((a, b) => {
+      return b - a;
+    })
+
+    for(let i = 0; i < 3; i++) {
+      sum += selectOne[i];
+    }
+    sum += selectTwo[0];
+
+    console.log(sum);
+    process.exit();
+  });
