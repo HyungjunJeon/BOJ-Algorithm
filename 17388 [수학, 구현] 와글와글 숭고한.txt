@@ -1,0 +1,39 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input = line.split(' ').map((el) => parseInt(el));
+  })
+  .on('close', () => {
+    let min = 101;
+    let index;
+    if(input[0] + input[1] + input[2] >= 100) {
+      console.log('OK');
+    } else {
+      for(let i = 0; i < input.length; i++) {
+        if(min >= input[i]) {
+          min = input[i];
+          index = i;
+        }
+      }
+
+      switch(index) {
+        case 0:
+          console.log('Soongsil');
+          break;
+        case 1:
+          console.log('Korea');
+          break;
+        case 2:
+          console.log('Hanyang');
+          break;
+      }
+    }
+    process.exit();
+  });
