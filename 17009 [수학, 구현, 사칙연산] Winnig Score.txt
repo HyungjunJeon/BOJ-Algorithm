@@ -1,0 +1,26 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+  input.push(parseInt(line));
+})
+  .on('close', () => {
+    let apples = input[0] * 3 + input[1] * 2 + input[2];
+    let bananas = input[3] * 3 + input[4] * 2 + input[5];
+
+    if(apples > bananas) {
+      console.log('A');
+    } else if(apples === bananas) {
+      console.log('T');
+    } else {
+      console.log('B');
+    }
+    
+    process.exit();  
+  });
