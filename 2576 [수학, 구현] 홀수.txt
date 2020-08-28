@@ -1,0 +1,38 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(parseInt(line));
+  })
+  .on('close', () => {
+    let oddNumbers = [];
+    let sum = 0;
+
+    for(let i = 0; i < input.length; i++) {
+      if(input[i] % 2 !== 0) {
+        oddNumbers.push(input[i]);
+      }
+    }
+
+    if(oddNumbers.length === 0) {
+      console.log(-1);
+    } else {
+        for(let i = 0; i < oddNumbers.length; i++) {
+        sum += oddNumbers[i];
+      }
+
+      oddNumbers.sort((a, b) => {
+      return a - b;
+    })
+
+      console.log(sum);
+      console.log(oddNumbers[0]);
+    }
+    process.exit();
+  });
