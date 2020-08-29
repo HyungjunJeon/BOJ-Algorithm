@@ -1,0 +1,28 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    for(let i = 1; i <= input[0][0]; i++) {
+      console.log(decideAdvertise(input[i]));
+    }
+    process.exit();
+  });
+
+function decideAdvertise(array) {
+  if(array[0] < array[1] - array[2]) {
+    return 'advertise';
+  } else if(array[0] === array[1] - array[2]) {
+    return 'does not matter';
+  } else {
+    return 'do not advertise';
+  }
+}
