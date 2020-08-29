@@ -1,0 +1,24 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input = line.split(' ').map((el) => parseInt(el));
+  })
+  .on('close', () => {
+    let tempFirst = '';
+    let tempSecond = '';
+    let answer;
+    tempFirst += input[0];
+    tempFirst += input[1];
+    tempSecond += input[2];
+    tempSecond += input[3];
+    answer = parseInt(tempFirst) + parseInt(tempSecond);
+    console.log(answer);
+    process.exit();
+  });
