@@ -1,0 +1,65 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    for(let i = 1; i <= input[0][0]; i++) {
+      console.log(calculateTotalPrize(input[i]));
+    }
+    process.exit();
+  });
+
+function findFirstContestPrize(grade) {
+  let prize;
+  
+  if(grade === 1){
+    prize = 5000000;
+  } else if(grade > 1 && grade <= 3) {
+    prize = 3000000;
+  } else if(grade > 3 && grade <= 6) {
+    prize = 2000000;
+  } else if(grade > 6 && grade <= 10) {
+    prize = 500000;
+  } else if(grade > 10 && grade <= 15) {
+    prize = 300000;
+  } else if(grade > 15 && grade <= 21) {
+    prize = 100000;
+  } else {
+    prize = 0;
+  }
+
+  return prize;
+}
+
+function findSecondContestPrize(grade) {
+  let prize;
+
+  if(grade === 1) {
+    prize = 5120000;
+  } else if(grade > 1 && grade <= 3) {
+    prize = 2560000;
+  } else if(grade > 3 && grade <= 7) {
+    prize = 1280000;
+  } else if(grade > 7 && grade <= 15) {
+    prize = 640000;
+  } else if(grade > 15 && grade <= 31) {
+    prize = 320000;
+  } else {
+    prize = 0;
+  }
+
+  return prize;
+}
+
+function calculateTotalPrize(array) {
+  let totalPrize = findFirstContestPrize(array[0]) + findSecondContestPrize(array[1]);
+  return totalPrize;
+}
