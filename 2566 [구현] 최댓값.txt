@@ -1,0 +1,36 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let max = 0;
+    let row;
+    let column;
+    let answer = '';
+
+    for(let i = 0; i < 9; i++) {
+      for(let j = 0; j < 9; j++) {
+        if(max < input[i][j]) {
+          max = input[i][j];
+          row = i + 1;
+          column = j + 1;
+        }
+      }
+    }
+
+    answer += max;
+    answer += '\n';
+    answer += row;
+    answer += ' ';
+    answer += column;
+    console.log(answer);
+    process.exit();
+  });
