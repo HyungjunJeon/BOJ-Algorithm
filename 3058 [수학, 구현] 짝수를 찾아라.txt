@@ -1,0 +1,50 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let answer = '';
+
+    for(let i = 1; i <= input[0][0]; i++) {
+      answer += sumEvenNumber(input[i]);
+      answer += ' ';
+      answer += findMinEvenNumber(input[i]);
+      console.log(answer);
+      answer = '';
+    }
+    process.exit();
+  });
+
+function sumEvenNumber(array) {
+  let sum = 0;
+
+  for(let i = 0; i < array.length; i++) {
+    array[i] % 2 === 0 ? sum += array[i] : sum;
+  }
+
+  return sum;
+}
+
+function findMinEvenNumber(array) {
+  let temp = [];
+
+  for(let i = 0; i < array.length; i++) {
+    if(array[i] % 2 === 0) {
+      temp.push(array[i]);
+    }
+  }
+
+  temp.sort((a, b) => {
+    return a - b;
+  })
+
+  return temp[0];
+}
