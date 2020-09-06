@@ -1,0 +1,21 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let index = 0;
+
+    while(input[index][0] !== 0 && input[index][1] !== 0) {
+      console.log(input[index][0] + input[index][1]);
+      index++;
+    }
+    process.exit();
+  });
