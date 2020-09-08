@@ -1,0 +1,42 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let answer = '';
+    let q1Count = 0;
+    let q2Count = 0;
+    let q3Count = 0;
+    let q4Count = 0;
+    let axisCount = 0;
+
+    for(let i = 1; i <= input[0][0]; i++) {
+      if(input[i][0] > 0 && input[i][1] > 0) {
+        q1Count++;
+      } else if(input[i][0] < 0 && input[i][1] > 0) {
+        q2Count++;
+      } else if(input[i][0] < 0 && input[i][1] < 0) {
+        q3Count++;
+      } else if(input[i][0] > 0 && input[i][1] < 0) {
+        q4Count++;
+      } else {
+        axisCount++;
+      }
+    }
+
+    answer += `Q1: ${q1Count}\n`;
+    answer += `Q2: ${q2Count}\n`;
+    answer += `Q3: ${q3Count}\n`;
+    answer += `Q4: ${q4Count}\n`;
+    answer += `AXIS: ${axisCount}`;
+    console.log(answer);
+    process.exit();
+  });
