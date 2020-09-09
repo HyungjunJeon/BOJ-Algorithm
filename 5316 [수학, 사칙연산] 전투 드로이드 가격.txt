@@ -1,0 +1,22 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let price;
+
+    for(let i= 1; i <= input[0][0]; i++) {
+      price = input[i][0] * 350.34 + input[i][1] * 230.90 + input[i][2] * 190.55 + input[i][3] * 125.30 + input[i][4] * 180.90;
+      console.log(`$${price.toFixed(2)}`);
+
+    }
+    process.exit();
+  });
