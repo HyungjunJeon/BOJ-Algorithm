@@ -1,0 +1,18 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    for(let i = 1; i <= input[0][0]; i++) {
+      console.log(`You get ${Math.floor(input[i][0] / input[i][1])} piece(s) and your dad gets ${input[i][0] % input[i][1]} piece(s).`);
+    }
+    process.exit();
+  });
