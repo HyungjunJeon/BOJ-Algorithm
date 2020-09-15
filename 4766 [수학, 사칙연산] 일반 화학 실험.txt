@@ -1,0 +1,23 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(parseFloat(line));
+  })
+  .on('close', () => {
+    let answer;
+    let index = 1;
+
+    while(input[index] !== 999) {
+      answer = input[index] - input[index - 1];
+      console.log(answer.toFixed(2));
+      index++;
+    }
+    process.exit();
+  });
