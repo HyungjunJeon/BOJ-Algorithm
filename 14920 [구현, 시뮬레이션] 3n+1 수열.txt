@@ -1,0 +1,31 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let sum = 0;
+let input = [];
+
+rl.on('line', line => {
+  input.push(parseInt(line));
+})
+  .on('close', () => {
+    let index = 1;
+    let number = input[0];
+
+    while(number !== 1) {
+      index++;
+      number = calculateNextNumber(number);
+    }
+
+    console.log(index);
+    process.exit();
+  });
+
+function calculateNextNumber(number) {
+  let nextNumber;
+  nextNumber = number % 2 === 0 ? number / 2 : 3 * number + 1;
+  return nextNumber;
+}
