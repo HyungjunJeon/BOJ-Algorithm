@@ -1,0 +1,27 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let answer = 0;
+    sortArrayToDescendingOrder(input[1]);
+    sortArrayToDescendingOrder(input[2]);
+    answer += input[1][0];
+    answer += input[2][0];
+    console.log(answer);
+    process.exit();
+  });
+
+function sortArrayToDescendingOrder(array) {
+  array.sort((a, b) => {
+    return b - a;
+  })
+}
