@@ -1,0 +1,32 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    for(let i = 1; i <= input[0][0]; i++) {
+      console.log(`Scenario #${i}:`);
+      console.log(isRightAngledTriangle(input[i]));
+      console.log();
+    }
+    process.exit();
+  });
+
+function isRightAngledTriangle(array) {
+  let answer;
+
+  array.sort((a, b) => {
+    return a - b;
+  })
+
+  answer = Math.pow(array[0], 2) + Math.pow(array[1], 2) === Math.pow(array[2], 2) ? 'yes' : 'no';
+
+  return answer;
+}
