@@ -1,0 +1,27 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    while(!(input[0][1] <= 0 || input[1][1] <= 0)) {
+      input[0][1] -= input[1][0];
+      input[1][1] -= input[0][0];
+    }
+
+    if(input[0][1] <= 0 && input[1][1] <= 0) {
+      console.log('DRAW');
+    } else if(input[0][1] > 0) {
+      console.log('PLAYER A');
+    } else {
+      console.log('PLAYER B');
+    }
+    process.exit();
+  });
