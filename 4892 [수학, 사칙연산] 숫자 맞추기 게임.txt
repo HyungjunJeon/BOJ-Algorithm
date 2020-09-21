@@ -1,0 +1,26 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(parseInt(line));
+  })
+  .on('close', () => {
+    let n;
+    let index = 0;
+
+    while(input[index] !== 0) {
+      n = input[index] * 3;
+      n = n % 2 === 0 ? Math.floor(n / 2) : Math.floor((n + 1) / 2);
+      n = n * 3;
+      n = Math.floor(n / 9);
+      (input[index] * 3) % 2 === 0 ? console.log(`${index + 1}. even ${n}`) : console.log(`${index + 1}. odd ${n}`);
+      index++;
+    }
+    process.exit();
+  });
