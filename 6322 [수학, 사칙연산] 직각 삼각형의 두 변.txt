@@ -1,0 +1,38 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let index = 0;
+
+    while(!(input[index][0] === 0 && input[index][1] === 0 && input[index][2] === 0)) {
+      console.log(`Triangle #${index + 1}`);
+      printSideLength(input[index]);
+      index++;
+    }
+    process.exit();
+  });
+
+function printSideLength(array) {
+  let answer;
+  if(array[2] === -1) {
+    answer = Math.sqrt(Math.pow(array[0], 2) + Math.pow(array[1], 2));
+    isNaN(answer) || answer === 0 ? conosole.log('Impossible.\n') : console.log(`c = ${answer.toFixed(3)}\n`);
+  } else {
+    if(array[0] === -1) {
+      answer = Math.sqrt(Math.pow(array[2], 2) - Math.pow(array[1], 2));
+      isNaN(answer) || answer === 0 ? console.log('Impossible.\n') : console.log(`a = ${answer.toFixed(3)}\n`);
+    } else {
+      answer = Math.sqrt(Math.pow(array[2], 2) - Math.pow(array[0], 2));
+      isNaN(answer) || answer === 0 ? console.log('Impossible.\n') : console.log(`b = ${answer.toFixed(3)}\n`);
+    }
+  }
+}
