@@ -1,0 +1,24 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input = line.split(' ').map((el) => parseInt(el));
+  })
+  .on('close', () => {
+    let count = input[0];
+    let temp = input[0];
+
+    while(Math.floor(temp / input[1]) > 0) {
+      count += Math.floor(temp / input[1]);
+      temp /= input[1];
+    }
+
+    console.log(count);
+    process.exit();
+  });
