@@ -1,0 +1,36 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' '));
+  })
+  .on('close', () => {
+    let index = 0;
+    
+    while(!(input[index][0] === '0' && input[index][1] === 'W' && input[index][2] === '0')) {
+      console.log(calculateBalance(input[index]));
+      index++;
+    }
+    process.exit();
+  });
+
+function calculateBalance(array) {
+  let answer;
+
+  switch(array[1]) {
+    case 'W':
+      answer = parseInt(array[0]) - parseInt(array[2]) < -200 ? 'Not allowed' : parseInt(array[0]) - parseInt(array[2]);
+      break;
+    case 'D':
+      answer = parseInt(array[0]) + parseInt(array[2]);
+      break;
+  }
+
+  return answer;
+}
