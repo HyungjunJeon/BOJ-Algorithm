@@ -1,0 +1,35 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input = line.split(' ').map((el) => parseInt(el));
+  })
+  .on('close', () => {
+    let allowance = 5000;
+    let price;
+
+    for(let i = 0; i < input.length; i++) {
+      switch(input[i]) {
+        case 1:
+          price = 500;
+          break;
+        case 2:
+          price = 800;
+          break;
+        case 3:
+          price = 1000;
+          break;
+      }
+
+      allowance -= price;
+    }
+
+    console.log(allowance);
+    process.exit();
+  });
