@@ -1,0 +1,28 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' '));
+  })
+  .on('close', () => {
+    let answer;
+
+    for(let i = 1; i <= input[0][0]; i++) {
+      switch(input[i][1]) {
+        case '+':
+          answer = parseInt(input[i][0]) + parseInt(input[i][2]) === parseInt(input[i][4]) ? 'YES' : 'NO';
+          break;
+        case '-':
+          answer = parseInt(input[i][0]) - parseInt(input[i][2]) === parseInt(input[i][4]) ? 'YES' : 'NO';
+          break;
+      }
+      console.log(`Case ${i}: ${answer}`);
+    }
+    process.exit();
+  });
