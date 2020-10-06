@@ -1,0 +1,28 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(parseInt(line));
+  })
+  .on('close', () => {
+    for(let i = 1; i <= input[0]; i++) {
+      console.log(`${input[i]} ${countDivisor(input[i])}`);
+    }
+    process.exit();
+  });
+
+function countDivisor(number) {
+  let count = 0;
+
+  for(let i = 1; i <= number; i++) {
+    number % i === 0 ? count++ : count;
+  }
+
+  return count;
+}
