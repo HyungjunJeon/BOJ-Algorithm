@@ -1,0 +1,58 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let answer;
+
+    for(let i = 1; i <= input[0][0]; i++) {
+      answer = '';
+      answer += input[i][0];
+      answer += ' ';
+      answer += sumAllIntegers(input[i][1]);
+      answer += ' ';
+      answer += sumOddIntegers(input[i][1]);
+      answer += ' ';
+      answer += sumEvenIntegers(input[i][1]);
+      console.log(answer);
+    }
+    process.exit();
+  });
+
+function sumAllIntegers(number) {
+  let answer = 0;
+
+  for(let i = 1; i <= number; i++) {
+    answer += i;
+  }
+
+  return answer;
+}
+
+function sumOddIntegers(number) {
+  let answer = 0;
+
+  for(let i = 1; i <= number; i++) {
+    answer += 2 * i - 1;
+  }
+
+  return answer;
+}
+
+function sumEvenIntegers(number) {
+  let answer = 0;
+
+  for(let i = 1; i <= number; i++) {
+    answer += 2 * i;
+  }
+
+  return answer;
+}
