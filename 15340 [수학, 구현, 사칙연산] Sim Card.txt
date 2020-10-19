@@ -1,0 +1,33 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let index = 0;
+
+    while(!(input[index][0] === 0 && input[index][1] === 0)) {
+      console.log(findMinPrece(input[index]));
+      index++;
+    }
+    process.exit();
+  });
+
+function findMinPrece(array) {
+  let price1 = array[0] * 30 + array[1] * 40;
+  let price2 = array[0] * 35 + array[1] * 30;
+  let price3 = array[0] * 40 + array[1] * 20;
+  let min = price1;
+
+  min = min >= price2 ? price2 : min;
+  min = min >= price3 ? price3 : min;
+
+  return min;
+}
