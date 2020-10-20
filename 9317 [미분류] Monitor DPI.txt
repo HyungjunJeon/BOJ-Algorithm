@@ -1,0 +1,26 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseFloat(el)));
+  })
+  .on('close', () => {
+    let index  = 0;
+    let horizontalDPI;
+    let verticalDPI;
+
+    while(!(input[index][0] === 0 && input[index][1] === 0 && input[index][2] === 0)) {
+      horizontalDPI = input[index][1] / (16 * input[index][0] / Math.sqrt(337));
+      verticalDPI = input[index][2] / (9 * input[index][0] / Math.sqrt(337));
+      console.log(`Horizontal DPI: ${horizontalDPI.toFixed(2)}`);
+      console.log(`Vertical DPI: ${verticalDPI.toFixed(2)}`);
+      index++;
+    }
+    process.exit();
+  });
