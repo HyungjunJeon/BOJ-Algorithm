@@ -1,0 +1,26 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let index = 0;
+    let count;
+
+    while(input[index][0] !== 0) {
+      count = 0;
+      for(let i = 0; i < input[index][0]; i++) {
+        input[index + 1][i] === 0 ? count++ : count;
+      }
+      console.log(`Mary won ${count} times and John won ${input[index][0] - count} times`);
+      index += 2;
+    }
+    process.exit();
+  });
