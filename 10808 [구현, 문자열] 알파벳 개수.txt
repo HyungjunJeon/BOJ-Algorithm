@@ -1,0 +1,32 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let answer = '';
+    let count = [];
+    
+    for(let i = 0; i < 26; i++) {
+      count.push(0);
+    }
+
+    for(let i = 0; i < input[0].length; i++) {
+      count[input[0].charCodeAt(i) - 97]++;
+    }
+
+    for(let i = 0; i < count.length; i++) {
+      answer += count[i];
+      answer += ' ';
+    }
+
+    console.log(answer);
+    process.exit();
+  });
