@@ -1,0 +1,31 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(parseInt(line));
+  })
+  .on('close', () => {
+    let change = 1000 - input[0];
+    let answer = 0;
+
+    answer += Math.floor(change / 500);
+    change %= 500;
+    answer += Math.floor(change / 100);
+    change %= 100;
+    answer += Math.floor(change / 50);
+    change %= 50;
+    answer += Math.floor(change / 10);
+    change %= 10;
+    answer += Math.floor(change / 5);
+    change %= 5;
+    answer += change;
+
+    console.log(answer);
+    process.exit();
+  });
