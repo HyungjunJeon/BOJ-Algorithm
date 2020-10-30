@@ -1,0 +1,32 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(parseInt(line));
+  })
+  .on('close', () => {
+    let sum = 0;
+    let average;
+    let median;
+
+    input.sort((a, b) => {
+      return a - b;
+    })
+
+    for(let i = 0; i < input.length; i++) {
+      sum += input[i];
+    }
+
+    average = sum / input.length;
+    median = input[Math.floor(input.length / 2)];
+
+    console.log(average);
+    console.log(median);
+    process.exit();
+  });
