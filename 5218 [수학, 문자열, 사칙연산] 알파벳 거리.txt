@@ -1,0 +1,25 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' '));
+  })
+  .on('close', () => {
+    let answer;
+
+    for(let i = 1; i <= input[0][0]; i++) {
+      answer = 'Distances: ';
+      for(let j = 0; j < input[i][0].length; j++) {
+        answer += input[i][0].charCodeAt(j) <= input[i][1].charCodeAt(j) ? input[i][1].charCodeAt(j) - input[i][0].charCodeAt(j) : (input[i][1].charCodeAt(j) + 26) -  input[i][0].charCodeAt(j)
+        answer += ' ';
+      }
+      console.log(answer);
+    }
+    process.exit();
+  });
