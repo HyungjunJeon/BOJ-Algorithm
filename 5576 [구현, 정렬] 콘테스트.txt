@@ -1,0 +1,37 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(parseInt(line));
+  })
+  .on('close', () => {
+    let answer = '';
+    let wScore = 0;
+    let kScore = 0;
+    let wScores = input.slice(0,10);
+    let kScores = input.slice(10);
+    
+    wScores.sort((a, b) => {
+      return b - a;
+    })
+    kScores.sort((a, b) => {
+      return b - a;
+    })
+
+    for(let i = 0; i < 3; i++) {
+      wScore += wScores[i];
+      kScore += kScores[i];
+    }
+
+    answer += wScore;
+    answer += ' ';
+    answer+= kScore;
+    console.log(answer);
+    process.exit();
+  });
