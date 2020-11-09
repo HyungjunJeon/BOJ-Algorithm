@@ -1,0 +1,24 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input = line.split(' ').map((el) => parseInt(el));
+  })
+  .on('close', () => {
+    let emptyBottle = input[0] + input[1];
+    let answer = 0;
+
+    while(emptyBottle >= input[2]) {
+      answer += Math.floor(emptyBottle / input[2]);
+      emptyBottle = Math.floor(emptyBottle / input[2]) + emptyBottle % input[2];
+    }
+
+    console.log(answer);
+    process.exit();
+  });
