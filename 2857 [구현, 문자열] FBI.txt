@@ -1,0 +1,25 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let answer = '';
+
+    for(let i = 0; i < input.length; i++) {
+      if(input[i].indexOf('FBI') !== -1) {
+        answer += i + 1;
+        answer += ' ';
+      }
+    }
+
+    answer === '' ? console.log('HE GOT AWAY!') : console.log(answer);
+    process.exit();
+  });
