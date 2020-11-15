@@ -1,0 +1,30 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let sum;
+    let alphabetCount = Array(26);
+    
+    for(let i = 1; i <= input[0]; i++) {
+      sum = 0;
+      alphabetCount.fill(0, 0, alphabetCount.length);
+      for(let j = 0; j < input[i].length; j++) {
+        alphabetCount[input[i].charCodeAt(j) - 65]++;
+      }
+
+      for(let k = 0; k < alphabetCount.length; k++) {
+        alphabetCount[k] === 0 ? sum += (k + 65) : sum;
+      }
+      console.log(sum);
+    }
+    process.exit();
+  });
