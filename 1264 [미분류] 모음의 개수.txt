@@ -1,0 +1,28 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let index = 0;
+    let count;
+
+    while(input[index] !== '#') {
+      count = 0;
+      for(let i = 0 ; i < input[index].length; i++) {
+        if(input[index][i] === 'a' || input[index][i] === 'e' || input[index][i] === 'i' || input[index][i] === 'o' || input[index][i] === 'u' || input[index][i] === 'A' || input[index][i] === 'E' || input[index][i] === 'I' || input[index][i] === 'O' || input[index][i] === 'U') {
+          count++;
+        }
+      }
+      console.log(count);
+      index++;
+    }
+    process.exit();
+  });
