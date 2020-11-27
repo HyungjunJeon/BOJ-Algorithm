@@ -1,0 +1,35 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input = line.split(' ').map((el) => parseInt(el));
+  })
+  .on('close', () => {
+    let temp;
+    let reverseNumber;
+    let reverseNumbers = [];
+
+    for(let i  = 1; i <= input[1]; i++) {
+      temp = input[0] * i;
+      reverseNumber = '';
+      while(temp >= 10) {
+        reverseNumber += temp % 10;
+        temp = Math.floor(temp / 10);
+      }
+      reverseNumber += temp;
+      reverseNumbers.push(parseInt(reverseNumber));
+    }
+
+    reverseNumbers.sort((a, b) =>{
+      return b - a;
+    })
+
+    console.log(reverseNumbers[0]);
+    process.exit();
+  });
