@@ -1,0 +1,47 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    for(let i = 1; i <= input[0][0]; i++) {
+      if(calculateGandalfScore(input[2 * i - 1]) > calculateSauronScore(input[2 * i])) {
+        console.log(`Battle ${i}: Good triumphs over Evil`);
+      } else if(calculateGandalfScore(input[2 * i - 1]) < calculateSauronScore(input[2 * i])) {
+        console.log(`Battle ${i}: Evil eradicates all trace of Good`);
+      } else {
+        console.log(`Battle ${i}: No victor on this battle field`);
+      }
+    }
+    process.exit();
+  });
+
+function calculateGandalfScore(numbers) {
+  let score = 0;
+  score += numbers[0] * 1;
+  score += numbers[1] * 2;
+  score += numbers[2] * 3;
+  score += numbers[3] * 3;
+  score += numbers[4] * 4;
+  score += numbers[5] * 10;  
+  return score;
+}
+
+function calculateSauronScore(numbers) {
+  let score = 0;
+  score += numbers[0] * 1;
+  score += numbers[1] * 2;
+  score += numbers[2] * 2;
+  score += numbers[3] * 2;
+  score += numbers[4] * 3;
+  score += numbers[5] * 5;
+  score += numbers[6] * 10;  
+  return score;
+}
