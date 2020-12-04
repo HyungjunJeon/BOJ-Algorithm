@@ -1,0 +1,26 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' ').map((el) => parseInt(el)));
+  })
+  .on('close', () => {
+    let index = 0;
+
+    while(!(input[index][0] === 0 && input[index][1] === 0)) {
+      console.log(findSmallestInteger(input[index]));
+      index++;
+    }
+    process.exit();
+  });
+
+function findSmallestInteger(array) {
+  let answer = 3 * array[0] - (array[0] + array[1]);
+  return answer;
+}
