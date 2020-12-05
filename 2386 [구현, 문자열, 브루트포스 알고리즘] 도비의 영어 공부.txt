@@ -1,0 +1,35 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' '));
+  })
+  .on('close', () => {
+    let answer;
+    let index = 0;
+
+    while(input[index][0] !== '#') {
+      answer = input[index][0];
+      answer += ' ';
+      answer += countAlphabet(input[index]);
+      console.log(answer);
+      index++;
+    }
+    process.exit();
+  });
+
+function countAlphabet(array) {
+  let count = 0;
+  let sentence = array.slice(1).join(' ').toLowerCase();
+  for(let i = 0; i < sentence.length; i++) {
+    sentence[i] === array[0] ? count++ : count;
+  }
+
+  return count;
+}
