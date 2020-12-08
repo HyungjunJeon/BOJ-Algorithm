@@ -1,0 +1,44 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' '));
+  })
+  .on('close', () => {
+    let index = 0;
+
+    while(input[index][0] !== '#') {
+      console.log(countAlphabet(input[index]));
+      index++;
+    }
+    process.exit();
+  });
+
+function countAlphabet(string) {
+  let count = 0;
+  let temp = string.join(' ');
+  let alphabets = new Array(26);
+  alphabets.fill(0, 0, alphabets.length);
+
+  for(let i = 0; i < temp.length; i++) {
+    if(temp[i] >= 'a' && temp[i] <= 'z') {
+      alphabets[temp.charCodeAt(i) - 97]++;
+    } else if(temp[i] >= 'A' && temp[i] <= 'Z') {
+      alphabets[temp.charCodeAt(i) - 65]++;
+    } else {
+      continue;
+    }
+  }
+
+  for(let i = 0; i < alphabets.length; i++) {
+    alphabets[i] !== 0 ? count++ : count;
+  }
+
+  return count;
+}
