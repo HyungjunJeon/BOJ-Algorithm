@@ -1,0 +1,27 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let sumLeft = 0;
+    let sumRight = 0;
+
+    for(let i = 0; i < input[0].length / 2; i++) {
+      sumLeft += parseInt(input[0][i]);
+    }
+
+    for(let i = input[0].length / 2; i < input[0].length; i++) {
+      sumRight += parseInt(input[0][i]);
+    }
+    
+    sumLeft === sumRight ? console.log('LUCKY') : console.log('READY');
+    process.exit();
+  });
