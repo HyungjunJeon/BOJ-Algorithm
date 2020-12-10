@@ -1,0 +1,34 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let count = 0;
+    let number = input[0];
+
+    while(number >= 10) {
+      number = multipleDigits(number);
+      count++;
+    }
+
+    console.log(count);
+    process.exit();
+  });
+
+function multipleDigits(number) {
+  let result = 1;
+  while(number >= 10) {
+    result *= number % 10;
+    number = Math.floor(number / 10);
+  }
+  result *= number;
+  return result;
+}
