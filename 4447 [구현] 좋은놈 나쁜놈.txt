@@ -1,0 +1,44 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    for(let i = 1; i <= input[0]; i++) {
+      console.log(`${input[i]} is ${judgeGoodOrBad(input[i])}`);
+    }
+    process.exit();
+  });
+
+function judgeGoodOrBad(name) {
+  let countG = 0;
+  let countB = 0;
+  let answer;
+
+  for(let i = 0; i < name.length; i++) {
+    if(name[i] === 'g' || name[i] === 'G') {
+      countG++;
+    } else if(name[i] === 'b' || name[i] === 'B') {
+      countB++;
+    } else {
+      continue;
+    }
+  }
+
+  if(countG === countB) {
+    answer = 'NEUTRAL';
+  } else if(countG > countB) {
+    answer = 'GOOD';
+  } else {
+    answer = 'A BADDY';
+  }
+
+  return answer;
+}
