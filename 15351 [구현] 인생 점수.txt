@@ -1,0 +1,31 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    for(let i = 1; i <= input[0]; i++) {
+      calculateLifeScore(input[i]) === 100 ? console.log('PERFECT LIFE') : console.log(calculateLifeScore(input[i]));
+    }
+    process.exit();
+  });
+
+function calculateLifeScore(string) {
+  let score = 0;
+  
+  for(let i = 0; i < string.length;  i++) {
+    if(string[i] === ' ') {
+      continue;
+    }
+    score += string.charCodeAt(i) - 64;
+  }
+  
+  return score;
+}
