@@ -1,0 +1,47 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' '));
+  })
+  .on('close', () => {
+    for(let i = 1; i <= input[0]; i++) {
+      console.log(returnConversion(input[i]));
+    }
+    process.exit();
+  });
+
+function returnConversion(string) {
+  let answer = '';
+  
+  switch(string[1]) {
+    case 'kg':
+      answer += (parseFloat(string[0]) * 2.2046).toFixed(4);
+      answer += ' ';
+      answer += 'lb';
+      break;
+    case 'lb':
+      answer += (parseFloat(string[0]) * 0.4536).toFixed(4);
+      answer += ' ';
+      answer += 'kg';
+      break;
+    case 'l':
+      answer += (parseFloat(string[0]) * 0.2642).toFixed(4);
+      answer += ' ';
+      answer += 'g';
+      break;
+    case 'g':
+      answer += (parseFloat(string[0]) * 3.7854).toFixed(4);
+      answer += ' ';
+      answer += 'l';
+      break;
+  }
+
+  return answer;
+}
