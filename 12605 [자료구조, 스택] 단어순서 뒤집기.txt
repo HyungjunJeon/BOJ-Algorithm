@@ -1,0 +1,29 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line.split(' '));
+  })
+  .on('close', () => {
+    for(let i = 1; i <= input[0]; i++) {
+      console.log(`Case #${i}: ${reverseWords(input[i])}`);
+    }
+    process.exit();
+  });
+
+function reverseWords(string) {
+  let answer = '';
+
+  for(let i = string.length - 1; i >= 0;  i--) {
+    answer += string[i];
+    answer += ' ';
+  }
+
+  return answer;
+}
