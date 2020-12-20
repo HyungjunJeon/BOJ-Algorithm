@@ -1,0 +1,33 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let index = 1;
+    let stack = [];
+
+    while(input[index] !== '고무오리 디버깅 끝') {
+      if(input[index] === '문제') {
+        stack.push('문제');
+      } else {
+        if(stack.length === 0) {
+          stack.push('문제');
+          stack.push('문제');
+        } else {
+          stack.pop();
+        }
+      }
+      index++;
+    }
+
+    stack.length === 0 ? console.log('고무오리야 사랑해') : console.log('힝구');
+    process.exit();
+  });
