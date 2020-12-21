@@ -1,0 +1,31 @@
+'use strict';
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on('line', line => {
+    input.push(line);
+  })
+  .on('close', () => {
+    let index = 0;
+
+    while(input[index] !== 'Was it a cat I saw?') {
+      console.log(returnDecryption(input[index], index));
+      index++;
+    }
+    process.exit();
+  });
+
+function returnDecryption(string, index) {
+  let answer = '';
+
+  for(let i = 0; i < string.length; i += (index + 2)) {
+    answer += string[i];
+  }
+
+  return answer;
+}
